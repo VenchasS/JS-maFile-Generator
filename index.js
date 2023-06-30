@@ -1,4 +1,5 @@
 const SteamUser = require('steam-user');
+const SteamTOTP = require('steam-totp');
 var prompt = require('prompt-sync')();
 const fs = require('fs');
 const { exit } = require('process');
@@ -28,7 +29,8 @@ steamClient.on('loggedOn', () => {
           return;
         }
         console.log('Настройка двухфакторной аутентификации завершена успешно.');
-        fs.writeFile(`${steamClient.steamID.getSteamID64()}.maFile`, JSON.stringify({...response, fully_enrolled: true, Session: {
+        const deviceID = SteamTOTP.getDeviceID(steamClient.steamID);
+        fs.writeFile(`${steamClient.steamID.getSteamID64()}.maFile`, JSON.stringify({...response, device_id: deviceID,  fully_enrolled: true, Session: {
           "OAuthToken": null,
           "SessionID": "aaaaaaaaaaaaaaaaaaaaaaaa",
           "SteamID": steamClient.steamID.getSteamID64(),
