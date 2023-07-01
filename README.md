@@ -1,5 +1,7 @@
 # JS-maFile-Generator
 
+Based on [DoctorMcKay](https://github.com/DoctorMcKay) [node-steam-user](https://github.com/DoctorMcKay/node-steam-user) 
+
 Для работы обязательно нужен установленный на компьютере `Node JS`
 Перед началом работы запустите ``install.bat`` для установки нужных библиотек
 
